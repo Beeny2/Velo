@@ -1,2 +1,2 @@
 # Velo
-Velo discord bot
+## What is Velo?
