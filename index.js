@@ -121,11 +121,32 @@ bot.on('message', async message => {
     if(toDeafen.id === message.author.id) return message.channel.send("You can't deafen yourself.");
     if(toDeafen.highestRole.position >= message.member.highestRole.position) return message.channel.send("You can't deafen someone with a higher role than you.");
 
-    if(toMute.deaf == true) return message.channel.send("This user is already deafened.");
+    if(toDeafen.deaf == true) return message.channel.send("This user is already deafened.");
 
-    await toMute.setDeaf(true)
-      .catch(error => message.channel.send(`Sorry, I can't kick the user because: ${error}`));
+    await toDeafen.setDeaf(true)
+      .catch(error => message.channel.send(`Sorry, I can't deafen the user because: ${error}`));
+    message.channel.send(`${toDeafen} has been deafened by ${message.author}.`);
     console.log(`${toDeafen.user.id} has been deafened.`);
+  }
+  if(command === `${prefix}undeafen`) {
+    if(message.member.hasPermission("DEAFEN_MEMBERS") == false) return message.channel.send("You do not have perms.");
+    //Let toMute be the user mentioned
+    let toDeafen = message.guild.member(message.mentions.users.first());
+    if(!toDeafen) return message.channel.send("User not specified.");
+
+    if(toDeafen.id === message.author.id) return message.channel.send("You can't undeafen yourself.");
+    if(toDeafen.highestRole.position >= message.member.highestRole.position) return message.channel.send("You can't undeafen someone with a higher role than you.");
+
+    if(toDeafen.deaf == false) return message.channel.send("This user is already undeafened.");
+
+    await toDeafen.setDeaf(false)
+      .catch(error => message.channel.send(`Sorry, I can't undeafen the user because: ${error}`));
+    message.channel.send(`${toDeafen} has been undeafened by ${message.author}.`);
+    console.log(`${toDeafen.user.id} has been undeafened.`);
+  }
+  if(command === `${prefix}say`) {
+    await message.channel.send(args.join(' '))
+      .catch(error => message.channel.send(`Sorry, I can't say this because: ${error}`))
   }
 });
 
