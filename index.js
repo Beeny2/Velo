@@ -25,6 +25,17 @@ bot.on('message', async message => {
   //If the command doesn't start with prefix, return
   if(command.startsWith(prefix) == false) return;
 
+  if(command === `${prefix}help`) {
+    const helpEmbed = new Discord.RichEmbed()
+      .setTitle('List of commands')
+      .setAuthor('Velo 0.1.0')
+      .setColor('#ffbc1a')
+      .setDescription('Here\'s a list of commands. Keep in mind that I\'m still in development \
+so you only have a few commands to choose from right now.')
+      .addField('Moderation', 'ban\nunban\nkick\ndeafen\nundeafen\nmute\nunmute')
+      .setTimestamp()
+    message.channel.send(helpEmbed)
+  }
   //$ping: If the message is $ping send the ping of the server
   if(command === `${prefix}ping`) {
     message.channel.send(`Pong! Your ping is ${Math.round(bot.ping)} ms.`);
