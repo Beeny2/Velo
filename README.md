@@ -10,3 +10,5 @@ At the moment, Velo is very rudimentary. However, if you still want to download 
 3. Register an app and receive your bot token at https://discordapp.com/developers/.
 4. Replace `YOUR-TOKEN-HERE` with your token in config.json.
 5. Run index.js.
+
+Alternatively, you can go to https://discordapp.com/api/oauth2/authorize?client_id=533050128060383252&permissions=0&scope=bot to add Velo to your server.
